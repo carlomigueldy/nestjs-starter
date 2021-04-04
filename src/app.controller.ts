@@ -11,7 +11,7 @@ export class AppController {
 
   @Get()
   getHello() {
-    const host = this.configService.get<string>('DATABASE_HOST');
+    const host = this.configService.get<string>('MONGODB_URI');
 
     return {
       database: {
