@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Exclude } from 'class-transformer';
+import { Document, Schema as mongooseSchema } from 'mongoose';
 import { BaseModel } from 'src/common/models/base-model';
 
 export type UserDocument = User & Document;
@@ -23,3 +24,13 @@ export class User extends BaseModel {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+// export const UserSchema = new mongooseSchema({
+//   firstName: String,
+//   middleName: String,
+//   lastName: String,
+//   email: String,
+//   password: String,
+//   hidden: {
+//     password: true,
+//   },
+// });

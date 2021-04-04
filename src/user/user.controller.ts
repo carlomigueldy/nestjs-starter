@@ -1,11 +1,13 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
   Param,
   Post,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
 import { BaseControllerInterface } from 'src/common/interfaces/base-controller.interface';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -21,6 +23,7 @@ export class UserController {
     return await this.service.all();
   }
 
+  // @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
   async find(@Param('id') id: string): Promise<UserDocument> {
     return await this.service.find(id);

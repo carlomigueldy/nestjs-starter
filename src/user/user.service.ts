@@ -15,11 +15,17 @@ export class UserService implements BaseServiceInterface<UserDocument> {
   ) {}
 
   async all(): Promise<UserDocument[]> {
-    return await this.model.find({ deletedAt: null }).exec();
+    return await this.model
+      .find({ deletedAt: null })
+      .select('-password')
+      .exec();
   }
 
   async find(id: string): Promise<UserDocument> {
-    return await this.model.findOne({ _id: id, deletedAt: null }).exec();
+    return await this.model
+      .findOne({ _id: id, deletedAt: null })
+      .select('-password')
+      .exec();
   }
 
   async findByEmail(email: string): Promise<UserDocument> {
@@ -27,21 +33,31 @@ export class UserService implements BaseServiceInterface<UserDocument> {
   }
 
   async create(createDto: CreateUserDto): Promise<UserDocument> {
-    return await new this.model({
+    const created = new this.model({
       ...createDto,
       password: await this.bcrypt.hash(createDto.password),
-    }).save();
+    });
+
+    await created.save();
+
+    return await this.find(created._id);
   }
 
   async update(id: string, updateDto: UpdateUserDto): Promise<UserDocument> {
-    return await this.model.findByIdAndUpdate(id, updateDto).exec();
+    return await this.model
+      .findByIdAndUpdate(id, updateDto)
+      .select('-password')
+      .exec();
   }
 
   async delete(id: string): Promise<UserDocument> {
-    return await this.model.findByIdAndUpdate(id, { deletedAt: null }).exec();
+    return await this.model
+      .findByIdAndUpdate(id, { deletedAt: null })
+      .select('-password')
+      .exec();
   }
 
   async forceDelete(id: string): Promise<UserDocument> {
-    return await this.model.findByIdAndDelete(id).exec();
+    return await this.model.findByIdAndDelete(id).select('-password').exec();
   }
 }

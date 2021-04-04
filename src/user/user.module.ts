@@ -8,6 +8,24 @@ import { BcryptService } from 'src/common/services/bcrypt.service';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    // MongooseModule.forFeatureAsync([
+    //   {
+    //     name: User.name,
+    //     useFactory: async () => {
+    //       const schema = UserSchema;
+
+    //       console.log({ schema: User.name });
+
+    //       schema.plugin(await require('mongoose-hidden'), {
+    //         hidden: {
+    //           password: true,
+    //         },
+    //       });
+
+    //       return schema;
+    //     },
+    //   },
+    // ]),
   ],
   providers: [UserService, BcryptService],
   controllers: [UserController],
