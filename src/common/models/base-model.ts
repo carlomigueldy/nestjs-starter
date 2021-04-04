@@ -1,5 +1,5 @@
 import { Prop, Schema } from '@nestjs/mongoose';
-import { BaseModelInterface } from './base-model.interface';
+import { BaseModelInterface } from '../interfaces/base-model.interface';
 
 @Schema()
 export class BaseModel implements BaseModelInterface {

@@ -7,7 +7,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { BaseControllerInterface } from 'src/common/base-controller.interface';
+import { BaseControllerInterface } from 'src/common/interfaces/base-controller.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDocument } from './schemas/user.schema';
 import { UserService } from './user.service';

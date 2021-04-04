@@ -1,5 +1,3 @@
-import { Document } from 'mongoose';
-
 export interface BaseServiceInterface<T> {
   all(): Promise<T[]>;
 

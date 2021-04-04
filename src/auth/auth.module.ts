@@ -6,7 +6,7 @@ import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
-import { BcryptService } from 'src/common/bcrypt/bcrypt.service';
+import { BcryptService } from 'src/common/services/bcrypt.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
