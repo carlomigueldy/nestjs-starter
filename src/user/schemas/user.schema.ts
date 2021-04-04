@@ -15,10 +15,10 @@ export class User extends BaseModel {
   @Prop({ required: true })
   lastName: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   email: string;
 
-  @Prop({ required: true, minlength: 6, maxlength: 32 })
+  @Prop({ required: true, minlength: 6 })
   password: string;
 }
 
