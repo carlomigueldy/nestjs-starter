@@ -1,11 +1,9 @@
-import { Document } from 'mongoose';
-
-export interface BaseServiceInterface<T> {
+export interface BaseControllerInterface<T> {
   all(): Promise<T[]>;
 
   find(id: string): Promise<T>;
 
-  create(createDto: any): Promise<T>;
+  create(): Promise<T>;
 
   update(id: string, updateDto: any): Promise<T>;
 
